@@ -1,0 +1,29 @@
+{
+  "name": "Jespark - Health Reward Platform",
+  "short_name": "Jespark",
+  "description": "แพลตฟอร์มสุขภาพสำหรับการสะสมและแลก Reward เพื่อรับสินค้าและบริการด้านสุขภาพอย่างคุ้มค่า",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#51B677",
+  "scope": "/",
+  "prefer_related_applications": false,
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["health", "lifestyle", "shopping"],
+  "lang": "th"
+}
+

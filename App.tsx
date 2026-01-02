@@ -105,7 +105,7 @@ const App: React.FC = () => {
   );
 
   return (
-    <div className="min-h-screen bg-[#f9fafb] text-gray-900">
+    <div className="min-h-screen bg-[#f9fafb] text-gray-900" style={{ paddingTop: 'env(safe-area-inset-top)', paddingBottom: 'env(safe-area-inset-bottom)' }}>
       <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
       
       <div className="lg:ml-64 flex flex-col min-h-screen">
@@ -122,7 +122,7 @@ const App: React.FC = () => {
           </div>
         )}
 
-        <main className="p-4 sm:p-8 lg:p-10 transition-all duration-300 pb-24 lg:pb-10 flex-1">
+        <main className="p-4 sm:p-8 lg:p-10 transition-all duration-300 pb-28 lg:pb-10 flex-1">
           <header className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-10">
             <div>
               <h1 className="text-3xl font-extrabold tracking-tight text-gray-900">
@@ -512,20 +512,80 @@ const App: React.FC = () => {
 
       <AIChat userPoints={user.availablePoints} rewards={MOCK_REWARDS} />
       
-      <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 flex items-center justify-around p-3 z-40 shadow-up">
-        <button onClick={() => setActiveTab('home')} className={`p-2 rounded-full ${activeTab === 'home' ? 'text-[#51B677] bg-[#51B677]/10' : 'text-gray-400'}`}>
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a 1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
-        </button>
-        <button onClick={() => setActiveTab('dashboard')} className={`p-2 rounded-full ${activeTab === 'dashboard' ? 'text-[#51B677] bg-[#51B677]/10' : 'text-gray-400'}`}>
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
-        </button>
-        <button onClick={() => setActiveTab('rewards')} className={`p-2 rounded-full ${activeTab === 'rewards' ? 'text-[#51B677] bg-[#51B677]/10' : 'text-gray-400'}`}>
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
-        </button>
-        <button onClick={() => setActiveTab('profile')} className={`p-2 rounded-full ${activeTab === 'profile' ? 'text-[#51B677] bg-[#51B677]/10' : 'text-gray-400'}`}>
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
-        </button>
-      </div>
+      {/* Mobile Bottom Navigation */}
+      <nav className="block lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t-2 border-gray-200 z-[60] shadow-2xl" style={{ paddingBottom: 'max(0.5rem, env(safe-area-inset-bottom))', minHeight: '70px' }}>
+        <div className="flex items-center justify-around px-1 py-2 max-w-full">
+          <button 
+            onClick={() => setActiveTab('home')} 
+            className={`flex flex-col items-center justify-center gap-1 px-3 py-2 rounded-xl transition-all duration-200 flex-1 ${
+              activeTab === 'home' 
+                ? 'text-[#51B677]' 
+                : 'text-gray-500'
+            }`}
+          >
+            <svg className="w-6 h-6" fill={activeTab === 'home' ? 'currentColor' : 'none'} stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a 1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+            </svg>
+            <span className="text-[10px] font-semibold leading-tight">หน้าหลัก</span>
+          </button>
+          
+          <button 
+            onClick={() => setActiveTab('dashboard')} 
+            className={`flex flex-col items-center justify-center gap-1 px-3 py-2 rounded-xl transition-all duration-200 flex-1 ${
+              activeTab === 'dashboard' 
+                ? 'text-[#51B677]' 
+                : 'text-gray-500'
+            }`}
+          >
+            <svg className="w-6 h-6" fill={activeTab === 'dashboard' ? 'currentColor' : 'none'} stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+            </svg>
+            <span className="text-[10px] font-semibold leading-tight">วิเคราะห์</span>
+          </button>
+          
+          <button 
+            onClick={() => setActiveTab('rewards')} 
+            className={`flex flex-col items-center justify-center gap-1 px-3 py-2 rounded-xl transition-all duration-200 flex-1 ${
+              activeTab === 'rewards' 
+                ? 'text-[#51B677]' 
+                : 'text-gray-500'
+            }`}
+          >
+            <svg className="w-6 h-6" fill={activeTab === 'rewards' ? 'currentColor' : 'none'} stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+            </svg>
+            <span className="text-[10px] font-semibold leading-tight">รางวัล</span>
+          </button>
+          
+          <button 
+            onClick={() => setActiveTab('history')} 
+            className={`flex flex-col items-center justify-center gap-1 px-3 py-2 rounded-xl transition-all duration-200 flex-1 ${
+              activeTab === 'history' 
+                ? 'text-[#51B677]' 
+                : 'text-gray-500'
+            }`}
+          >
+            <svg className="w-6 h-6" fill={activeTab === 'history' ? 'currentColor' : 'none'} stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
+            </svg>
+            <span className="text-[10px] font-semibold leading-tight">ประวัติ</span>
+          </button>
+          
+          <button 
+            onClick={() => setActiveTab('profile')} 
+            className={`flex flex-col items-center justify-center gap-1 px-3 py-2 rounded-xl transition-all duration-200 flex-1 ${
+              activeTab === 'profile' 
+                ? 'text-[#51B677]' 
+                : 'text-gray-500'
+            }`}
+          >
+            <svg className="w-6 h-6" fill={activeTab === 'profile' ? 'currentColor' : 'none'} stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+            </svg>
+            <span className="text-[10px] font-semibold leading-tight">โปรไฟล์</span>
+          </button>
+        </div>
+      </nav>
     </div>
   );
 };
